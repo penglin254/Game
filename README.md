@@ -1,7 +1,8 @@
 # Game
 多种js游戏Demo，有兴趣的可以看看😂
 
-##Gobang(五子棋)
+## Gobang(五子棋)
+
 初始化参数：</br>
 
 思路：</br>
