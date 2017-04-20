@@ -13,7 +13,7 @@
 5. 判断赢家
 6. 结束
 
-查看：<a href="https://penglin254.github.io/Game/demo/Gobang/index.html">Demo</a>
+查看：<a target="_blank" href="https://penglin254.github.io/Game/demo/Gobang/index.html">Demo</a>
 
 支持
 ---
