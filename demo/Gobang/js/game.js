@@ -18,9 +18,13 @@
             cas: document.getElementById("cas"), // 获取画布对象
             step: document.getElementById("step"), //悔棋
             revoke: document.getElementById("revoke"), //撤销悔棋
+            position_x: null, //点击位置X
+            position_y: null, //点击位置Y
+            chess_x: null, //白棋位置
+            chess_y: null, //黑棋位置
             ctx: cas.getContext("2d"), //画布上下文
-            piece_b: img_b, //白棋
-            piece_w: img_w, //黑棋
+            piece_b: img_b, //白棋图片
+            piece_w: img_w, //黑棋图片
             boardArr: new Array(15), // 用二维数组来保存棋盘，0代表没有走过，1为白棋走过，2为黑棋走过
         };
     };
@@ -36,7 +40,6 @@
             }
         },
 
-
         //绘制棋盘
         drawLine: function () {
             for (var i = 0; i < this.options.cas.width / this.options.lattice; i++) {
@@ -47,6 +50,7 @@
                 this.options.ctx.moveTo(0, (i + 1) * this.options.lattice);
                 this.options.ctx.lineTo(this.options.cas.width, (i + 1) * this.options.lattice);
                 this.options.ctx.stroke();
+                this.options.ctx.globalCompositeOperation="lighter";
             }
         },
 
@@ -76,13 +80,42 @@
                     alert("你不能在这个位置下棋");
                     return;
                 }
+
                 // 判断是显示黑子还是白子
                 if (options.flag) { //白子
                     options.flag = false; //将标志置为false,表示下次为黑子
                     that.drawChess(1, x, y); //调用函数来画棋子
+                    that.options.position_x = x, that.options.position_y = y; //存储坐标
                 } else { //黑子
                     options.flag = true; //将标志置为true,表示下次为白子
                     that.drawChess(2, x, y); //调用函数来画棋子
+                    that.options.position_x = x, that.options.position_y = y; //存储坐标
+                }
+            }
+        },
+
+        //悔棋
+        regret: function () {
+            var options = this.options, that = this;
+            options.step.onclick = function () {
+                options.flag = !options.flag;
+                options.boardArr[options.position_x][options.position_y] = 0; //清除坐标
+                options.ctx.clearRect(options.chess_x, options.chess_y, 40, 40); //清除棋子
+                that.drawLine();
+            }
+        },
+
+        //撤销悔棋
+        revoke: function () {
+            var options = this.options, that = this;
+            options.revoke.onclick = function () {
+                if (options.boardArr[options.position_x][options.position_y] == 0) {
+                    options.flag = !options.flag;
+                    options.boardArr[options.position_x][options.position_y] = 1; //锁定坐标
+                    options.flag == false ? that.drawChess(1, options.position_x, options.position_y) : that.drawChess(2, options.position_x, options.position_y);//重画上一步棋子
+                }
+                else {
+                    alert("您还没悔棋呢！");
                 }
             }
         },
@@ -95,10 +128,12 @@
             if (num == 1) {
                 //绘制白棋
                 this.options.ctx.drawImage(this.options.piece_w, x0, y0);
+                this.options.chess_x = x0, this.options.chess_y = y0;
                 this.options.boardArr[x][y] = 1; //白子
             } else if (num == 2) {
                 // 绘制黑棋
                 this.options.ctx.drawImage(this.options.piece_b, x0, y0);
+                this.options.chess_x = x0, this.options.chess_y = y0;
                 this.options.boardArr[x][y] = 2; //黑子
             }
             //调用函数判断输赢
@@ -202,7 +237,7 @@
 
         //初始化方法
         init: function () {
-            this.drawLine(), this.board(), this.clickFn(), this.judge(), this.clickBtn();
+            this.drawLine(), this.board(), this.clickFn(), this.judge(), this.regret(), this.revoke(), this.clickBtn();
         }
 
 
