@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    margin: 10px;
+    border: 2px solid #000;
+}
+
+#box {
+    display: inline-block;
+    position: absolute;
+    margin-left: 100px;
+}
+
+span {
+    font: 24px "microsoft yahei";
+    display: inline-block;
+    height: 50px;
+}
+
+input {
+    margin-top: 30px;
+    display: block;
+    border:0;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font: 16px "microsoft yahei";
+    color: #fff;
+    background-color: #0099cc;
+    cursor: pointer;
+}
+
+div.explain{
+    font: 16px "microsoft yahei";
+    margin-top:40px;
+}
