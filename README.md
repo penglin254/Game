@@ -15,6 +15,10 @@
 
 查看：<a target="_blank" href="https://penglin254.github.io/Game/demo/Gobang/index.html">Demo</a>
 
+注意：</br>
+
+暂时没有悔棋和撤销悔棋的功能，请等候更新...
+
 支持
 ---
 BUG提交请发送邮箱: 139193411@qq.com
