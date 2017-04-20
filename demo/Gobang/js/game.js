@@ -202,11 +202,7 @@
 
         //初始化方法
         init: function () {
-            this.drawLine(),
-                this.board(),
-                this.clickFn(),
-                this.judge(),
-                this.clickBtn();
+            this.drawLine(), this.board(), this.clickFn(), this.judge(), this.clickBtn();
         }
 
 
