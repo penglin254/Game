@@ -15,6 +15,9 @@
 
 查看：<a target="_blank" href="https://penglin254.github.io/Game/demo/Gobang/index.html">Demo</a>
 
+图例：
+![image](https://penglin254.github.io/Game/demo/Gobang/img/gobang.gif)
+
 PS：新增悔棋和撤销悔棋功能，悔棋目前只支持悔一步，如果还有bug或者体验上有改进的，欢迎各位童鞋指正...
 
 支持
